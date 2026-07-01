@@ -1,0 +1,245 @@
+:root {
+  color-scheme: light;
+  --ink: #18211f;
+  --muted: #5c6862;
+  --paper: #f7f4ed;
+  --panel: rgba(15, 25, 22, 0.78);
+  --sun: #f0b84f;
+  --reef: #0e7d87;
+  --leaf: #63764d;
+  --shell: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+.hero {
+  position: relative;
+  min-height: 86vh;
+  overflow: hidden;
+  background: #20332f;
+}
+
+.hero img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.02) contrast(1.02);
+}
+
+.hero::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(7, 18, 17, 0.78), rgba(7, 18, 17, 0.18) 62%),
+    linear-gradient(0deg, rgba(7, 18, 17, 0.52), rgba(7, 18, 17, 0.04) 45%);
+}
+
+.hero__overlay {
+  position: relative;
+  z-index: 1;
+  width: min(980px, calc(100% - 40px));
+  padding: clamp(96px, 16vw, 170px) 0 72px;
+  margin: 0 auto;
+  color: var(--shell);
+}
+
+.kicker {
+  margin: 0 0 16px;
+  color: var(--sun);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 760px;
+  margin-bottom: 20px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3rem, 8vw, 7.2rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+
+.intro {
+  max-width: 650px;
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: clamp(1rem, 2.2vw, 1.28rem);
+  line-height: 1.65;
+}
+
+main {
+  width: min(1180px, calc(100% - 28px));
+  margin: -42px auto 0;
+  position: relative;
+  z-index: 2;
+}
+
+.destination-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: minmax(330px, auto);
+  gap: 14px;
+}
+
+.destination {
+  position: relative;
+  min-height: 330px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #1f2924;
+  box-shadow: 0 18px 48px rgba(26, 31, 27, 0.18);
+}
+
+.destination--wide {
+  grid-column: span 2;
+}
+
+.destination--tall {
+  grid-row: span 2;
+}
+
+.destination img {
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+  transition: transform 500ms ease;
+}
+
+.destination::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(180deg, rgba(3, 12, 11, 0.02), rgba(3, 12, 11, 0.76));
+}
+
+.destination:hover img {
+  transform: scale(1.045);
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 24px;
+  color: var(--shell);
+}
+
+.number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.56);
+  border-radius: 999px;
+  background: rgba(9, 28, 27, 0.38);
+  color: var(--sun);
+  font-size: 0.83rem;
+  font-weight: 800;
+}
+
+h2 {
+  margin-bottom: 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.45rem, 2.8vw, 2.25rem);
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.caption p {
+  max-width: 38rem;
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+footer {
+  width: min(1180px, calc(100% - 28px));
+  margin: 28px auto 42px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+footer p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 920px) {
+  .hero {
+    min-height: 78vh;
+  }
+
+  .destination-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .destination--wide,
+  .destination--tall {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero {
+    min-height: 82vh;
+  }
+
+  .hero__overlay {
+    width: min(100% - 28px, 980px);
+    padding-top: 84px;
+  }
+
+  main {
+    width: calc(100% - 18px);
+    margin-top: -28px;
+  }
+
+  .destination-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .destination {
+    min-height: 390px;
+  }
+
+  .caption {
+    padding: 20px;
+  }
+
+  .caption p {
+    font-size: 0.94rem;
+  }
+}
